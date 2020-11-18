@@ -82,6 +82,12 @@ module.exports = {
       .end()
 
     config
+      // https://webpack.js.org/configuration/devtool/#development
+      .when(process.env.NODE_ENV === 'development',
+        config => config.devtool('source-map') // 如果希望提升构建速度可以改成eval
+      )
+
+    config
       .when(process.env.NODE_ENV !== 'development',
         config => {
           config
